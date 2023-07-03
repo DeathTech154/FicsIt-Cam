@@ -22,6 +22,14 @@ void UInitGameWorldFicsItCam::DispatchLifecycleEvent(ELifecyclePhase Phase) {
 		UFGGameInstance* FGGameInstance = Cast<UFGGameInstance>(GameInstance);
 		APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
 		AFGPlayerController* FGPlayerController = Cast<AFGPlayerController>(PlayerController);
+		Char_Player* Char_Player = FGPlayerController->GetCharacter()
+		// Char_Player has the following:
+		// Function StartFreeRotate3P() to start 3rd person rotate mode?
+		// Function GetMesh3P() to pull 3rd person mesh -> Probably usable with SetOwnerNoSee
+		// Function GetMesh1p() to pull 1st person mesh -> Probably usable with SetOwnerNoSee
+		// Function GetCameraComponent() to access player camera component. Probably usefull to change Distance values.
+		// Property SetOwnerNoSee -> Hide 3p to player, this is owned by some mesh. Have to obtain the correct one to toggle this.
+		// SetFirstPersonMode() -> Using this with False may trigger 3rd person automatically doing StartFreeRotate3P or simply put out of body.
 		AGameStateBase* GameState = GetWorld()->GetGameState();
 		AFGGameState* FGGameState = Cast<AFGGameState>(GameState);
 		UE_LOG(LogTemp, Warning, TEXT("%p %p %p %p %p %p"), GameInstance, FGGameInstance, PlayerController, FGPlayerController, GameState, FGGameState)
